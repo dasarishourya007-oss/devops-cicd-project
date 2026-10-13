@@ -1,0 +1,26 @@
+
+name: DevOps CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Website
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check website file
+        run: test -f index.html
+
+      - name: Display success message
+        run: echo "Website validation successful!"
